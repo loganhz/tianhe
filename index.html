@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+
+<html>
+   <head>
+      
+      <script type = "text/javascript">
+        function WebSocketTest() {   
+            var api_token = document.getElementById('api-token').value;
+            document.cookie = `R_SESS=${api_token}`
+
+            var ws = new WebSocket(`ws://${ window.location.host }/rancher-api/v3/subscribe`);
+            
+            ws.onmessage = function (evt) { 
+                console.log(evt)
+            };
+        }
+      </script>
+		
+   </head>
+   
+   <body>
+      <div id = "sse">
+         <input id="api-token" type="text" placeholder="API Token"/>
+         <a href = "javascript:WebSocketTest()">Connect</a>
+      </div>
+   </body>
+</html>
